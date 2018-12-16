@@ -9,24 +9,24 @@ class ClientModel(admin.ModelAdmin):
     list_display = (
         'ordering',
         'business',
-        'name',
+        'contact_person',
         'status',
-        'description',
+        'project_type',
         'total_amount',
     )
     list_filter = (
         'joined',
         'status',
-        'description',
-        'stack',
+        'project_type',
+        'technology_stack',
     )
     list_display_links = ('business', )
     list_editable = (
         'ordering',
         'status',
     )
-    search_fields = ('business', 'name', 'status', 'description', 'stack',
-                     'total_amount')
+    search_fields = ('business', 'contact_person', 'status', 'project_type',
+                     'technology_stack', 'total_amount')
     formfield_overrides = {
         models.TextField: {
             'widget': Textarea(attrs={
@@ -38,10 +38,11 @@ class ClientModel(admin.ModelAdmin):
 
     fieldsets = (
         ('CLIENT INFO', {
-            'fields': ('business', 'name', 'phone', 'email')
+            'fields': ('business', 'contact_person', 'phone', 'email')
         }),
         ('PROJECT DETAILS', {
-            'fields': ('status', 'description', 'stack')
+            'fields': ('status', 'project_type', 'technology_stack',
+                       'description')
         }),
         ('DEVELOPMENT DETAILS', {
             'fields': ('pivotal_tracker', 'repositories', 'dev_team',
